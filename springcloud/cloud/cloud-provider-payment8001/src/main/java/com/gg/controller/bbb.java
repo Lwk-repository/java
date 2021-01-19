@@ -14,15 +14,9 @@ public class bbb {
 //        Object o = a.get(new aaa());
 //        System.out.println(o);
 
-        int i = 2;
-        int j = 3;
-        int k = i + j;
-
-        try {
-            Thread.sleep(6000);
-        }catch (InterruptedException e){
-            System.out.println(e.getStackTrace());
-        }
-        System.out.println("hello");
+        Class<bbb> bbbClass = bbb.class;
+        bbb bbb = new bbb();
+        System.out.println(bbb.getClass());
+        System.out.println(bbbClass.getClassLoader());
     }
 }

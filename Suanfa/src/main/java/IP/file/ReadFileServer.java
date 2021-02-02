@@ -19,6 +19,11 @@ public class ReadFileServer {
         while((len = is.read(buffer))!=-1){
             fos.write(buffer,0,len);
         }
+
+        // 通知客户端接收完毕了
+        OutputStream os = socket.getOutputStream();
+        os.write("接收完毕".getBytes());
+
         fos.close();
         is.close();
         socket.close();

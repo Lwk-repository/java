@@ -1,9 +1,6 @@
 package IP.file;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;
 
@@ -20,6 +17,21 @@ public class ReadFileClient {
         while((len = fs.read(buffer))!=-1){
             os.write(buffer,0,len);
         }
+
+        // 通知服务器我已经传输完
+        socket.shutdownOutput();
+
+        //确定服务器接收完毕才能断开连接
+        InputStream is = socket.getInputStream();
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        byte[] bytes = new byte[1024];
+        int len2;
+        while((len2 = is.read(bytes))!=-1){
+            baos.write(bytes,0,len2);
+        }
+        System.out.println(baos.toString());
+        baos.close();
+        is.close();
         fs.close();
         os.close();
         socket.close();

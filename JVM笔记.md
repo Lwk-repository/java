@@ -304,3 +304,7 @@ end
 declare @num int;
 EXEC aaa 0, @num OUTPUT
 print @num
+
+
+
+set @rowc += @@ROWCOUNT --返回上次sql语句影响行数

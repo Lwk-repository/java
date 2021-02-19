@@ -4,6 +4,9 @@ import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;
 
+/**
+ * 传文件
+ */
 public class ReadFileClient {
     public static void main(String[] args) throws IOException {
         // 创建一个socket连接

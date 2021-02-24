@@ -4,6 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 
 // 此三合成注解，相当于@SpringBootApplication
@@ -59,5 +60,7 @@ public class DemoApplication {
 //=================@ImportResource=============================
         boolean haha = run.containsBean("haha");
         System.out.println(haha);
+//        AnnotationConfigApplicationContext anno = new AnnotationConfigApplicationContext(xxx.class); 从容器中获取某个类
+
     }
 }

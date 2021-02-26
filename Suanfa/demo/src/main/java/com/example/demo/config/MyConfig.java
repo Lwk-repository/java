@@ -11,6 +11,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.ImportResource;
+import org.springframework.data.redis.connection.RedisConnectionFactory;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.serializer.RedisSerializer;
+import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 /**
  * 1.配置类里面使用@bean标注在方法上给容器注册组件，默认也是单实例的
@@ -42,5 +46,22 @@ public class MyConfig {
     @Bean("tom1")// 组件名默认是方法名，可自定义
     public Pet pet() {
         return new Pet("tomcat");
+    }
+
+    @Bean(name="redisTemplate")
+    public RedisTemplate<String, String> redisTemplate(RedisConnectionFactory factory) {
+        RedisTemplate<String, String> template = new RedisTemplate<>();
+        RedisSerializer<String> redisSerializer = new StringRedisSerializer();
+        template.setConnectionFactory(factory);
+//key序列化方式
+        template.setKeySerializer(redisSerializer);
+//value序列化
+        template.setValueSerializer(redisSerializer);
+//value hashmap序列化
+        template.setHashValueSerializer(redisSerializer);
+//key haspmap序列化
+        template.setHashKeySerializer(redisSerializer);
+//
+        return template;
     }
 }
